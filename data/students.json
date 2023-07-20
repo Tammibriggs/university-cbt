@@ -1,0 +1,162 @@
+[
+  {
+    "year": 1,
+    "firstName": "Henry",
+    "matNo": "U2019/5570001",
+    "lastName": "Anil",
+    "registeredCourses": ["MATH110.1","GES100.1", "GES102.1", "PHY102.1", "CSC180.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 1,
+    "firstName": "Jerry",
+    "matNo": "U2019/5570002",
+    "lastName": "Johnsom",
+    "registeredCourses": ["MATH110.1","GES100.1", "GES102.1", "PHY102.1", "CSC180.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 1,
+    "firstName": "Jeff",
+    "matNo": "U2019/5570003",
+    "lastName": "Buzus",
+    "registeredCourses": ["MATH110.1","GES100.1", "GES102.1", "PHY102.1", "CSC180.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 1,
+    "firstName": "Tammy",
+    "matNo": "U2019/5570004",
+    "lastName": "Ray",
+    "registeredCourses": ["MATH110.1","GES100.1", "GES102.1", "PHY102.1", "CSC180.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 1,
+    "firstName": "Precious",
+    "matNo": "U2019/5570005",
+    "lastName": "Woke",
+    "registeredCourses": ["MATH110.1","GES100.1", "GES102.1", "PHY102.1", "CSC180.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 2,
+    "firstName": "Ray",
+    "matNo": "U2020/5570001",
+    "lastName": "White",
+    "registeredCourses": ["CSC281.1", "CSC3280.1", "CSC283.1", "CSC288.1", "CSC284.1", "MATH210.1", "MATH270.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 2,
+    "firstName": "Esther",
+    "matNo": "U2020/5570002",
+    "lastName": "Jeffery",
+    "registeredCourses": ["CSC281.1", "CSC3280.1", "CSC283.1", "CSC288.1", "CSC284.1", "MATH210.1", "MATH270.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 2,
+    "firstName": "Godswill",
+    "matNo": "U2020/5570003",
+    "lastName": "Buzus",
+    "registeredCourses": [],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 2,
+    "firstName": "Joice",
+    "matNo": "U2020/5570004",
+    "lastName": "Ray",
+    "registeredCourses": ["CSC281.1", "CSC3280.1", "CSC283.1", "CSC288.1", "CSC284.1", "MATH210.1", "MATH270.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 2,
+    "firstName": "Promise",
+    "matNo": "U2020/5570005",
+    "lastName": "Woke",
+    "registeredCourses": ["CSC281.1", "CSC3280.1", "CSC283.1", "CSC288.1", "CSC284.1", "MATH210.1", "MATH270.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 3,
+    "firstName": "Emmanuel",
+    "matNo": "U2021/5570001",
+    "lastName": "Promise",
+    "registeredCourses": ["CSC382.1", "CSC394.1", "CSC395.1", "CSC396.1", "CSC397.1", "GES300.1", "STAT370.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 3,
+    "firstName": "Daniel",
+    "matNo": "U2021/5570002",
+    "lastName": "Gray",
+    "registeredCourses": ["CSC382.1", "CSC394.1", "CSC395.1", "CSC396.1", "CSC397.1", "GES300.1", "STAT370.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 3,
+    "firstName": "Henry",
+    "matNo": "U2021/5570003",
+    "lastName": "Black",
+    "registeredCourses": ["CSC382.1", "CSC394.1", "CSC395.1", "CSC396.1", "CSC397.1", "GES300.1", "STAT370.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 3,
+    "firstName": "Samuel",
+    "matNo": "U2021/5570004",
+    "lastName": "Sotonye",
+    "registeredCourses": ["CSC382.1", "CSC394.1", "CSC395.1", "CSC396.1", "CSC397.1", "GES300.1", "STAT370.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 3,
+    "firstName": "Udo",
+    "matNo": "U2021/5570005",
+    "lastName": "Uche",
+    "registeredCourses": ["CSC382.1", "CSC394.1", "CSC395.1", "CSC396.1", "CSC397.1", "GES300.1", "STAT370.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 4,
+    "firstName": "Joy",
+    "matNo": "U2022/5570001",
+    "lastName": "Promise",
+    "registeredCourses": ["CSC480.1", "CSC483.1", "CSC482.1", "CSC486.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 4,
+    "firstName": "Japheth",
+    "matNo": "U2022/5570002",
+    "lastName": "Johnson",
+    "registeredCourses": ["CSC480.1", "CSC483.1", "CSC482.1", "CSC486.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 4,
+    "firstName": "Cyza",
+    "matNo": "U2022/5570003",
+    "lastName": "Samuel",
+    "registeredCourses": ["CSC480.1", "CSC483.1", "CSC482.1", "CSC486.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 4,
+    "firstName": "Chibuzo",
+    "matNo": "U2022/5570004",
+    "lastName": "Choice",
+    "registeredCourses": ["CSC480.1", "CSC483.1", "CSC482.1", "CSC486.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  },
+  {
+    "year": 4,
+    "firstName": "Able",
+    "matNo": "U2022/5570005",
+    "lastName": "Abiding",
+    "registeredCourses": ["CSC480.1", "CSC483.1", "CSC482.1", "CSC486.1"],
+    "roleId": "5fb94e35abab9450b0b71b69"
+  } 
+]

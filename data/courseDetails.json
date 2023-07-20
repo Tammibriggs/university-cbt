@@ -1,0 +1,114 @@
+[
+  {
+    "year": 1,
+    "courses": [
+      {
+        "code": "GES100.1",
+        "title": "COMMUNICATION SKILLS IN ENGLISH"
+      },
+      {
+        "code": "GES102.1",
+        "title": "INTROUDCTION TO PHILOSOPHY AND LOGIC"
+      },
+      {
+        "code": "MATH110.1",
+        "title": "CALCULUS"
+      },
+      {
+        "code": "PHY102.1",
+        "title": "MACHANICS AND PROPERTIES OF MATTER"
+      },
+      {
+        "code": "CSC180.1",
+        "title": "INTRODUCTION TO COMPUTER SCIENCE AND BASIC PROGRAMMING"
+      }
+    ]
+  },
+  {
+    "year": 2,
+    "courses": [
+      {
+        "code": "CSC3280.1",
+        "title": "INTRODUCTION TO COMPUTER PROGRAMMING"
+      },
+      {
+        "code": "CSC281.1",
+        "title": "COMPUTER SYSTEM FUNDAMENTALS"
+      },
+      {
+        "code": "CSC283.1",
+        "title": "INTRODUCTION TO INFORMATION SYSTEMS AND FILE STRUCTURES"
+      },
+      {
+        "code": "CSC284.1",
+        "title": "INTRODUCTION TO LOGIC DESIGN"
+      },
+      {
+        "code": "CSC288.1",
+        "title": "STRUCTURED PROGRAMMING"
+      },
+      {
+        "code": "MATH210.1",
+        "title": "LINEAR ALGEBRA"
+      },
+      {
+        "code": "MATH270.1",
+        "title": "NUMERICAL ANALYSIS"
+      }
+    ]
+  },
+  {
+    "year": 3,
+    "courses": [
+      {
+        "code": "CSC382.1",
+        "title": "COMPUTER ARCHITECTURE"
+      },
+      {
+        "code": "CSC394.1",
+        "title": "OPERATING STYSTEM"
+      },
+      {
+        "code": "CSC395.1",
+        "title": "SOFTWARE ENGINEERING"
+      },
+      {
+        "code": "CSC396.1",
+        "title": "AUTOMATA THEORY, COMPUTABILITY AND FORMAL LANGUAGES"
+      },
+      {
+        "code": "CSC397.1",
+        "title": "COMPUTATIONAL METHODS"
+      },
+      {
+        "code": "GES300.1",
+        "title": "FUNDAMETALS OF ENTREPRENEURSHIP STUDIES"
+      },
+      {
+        "code": "STAT370.1",
+        "title": "OPERTAIONS RESEARCH"
+      }
+    ]
+  },
+  {
+    "year": 4,
+    "courses": [
+      {
+        "code": "CSC480.1",
+        "title": "DATABASE MANAGEMENT"
+      },
+      {
+        "code": "CSC483.1",
+        "title": "ALGORITHM"
+      },
+      {
+        "code": "CSC482.1",
+        "title": "COMPILER CONSTRUCTION"
+      },
+      {
+        "code": "CSC486.1",
+        "title": "SYSTEM ANALYSIS AND DESIGN"
+      }
+    ]
+  }
+]
