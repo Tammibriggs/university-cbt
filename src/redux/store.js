@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 // Or from '@reduxjs/toolkit/query/react'
 import { api } from './services/api'
 import auth from './authSlice'
+import courses from './coursesSlice'
 
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
     [api.reducerPath]: api.reducer,
-    auth
+    auth,
+    courses
   },
 
   // Adding the api middleware enables caching, invalidation, polling,

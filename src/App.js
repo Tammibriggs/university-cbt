@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './app.css';
 import {setCredentials} from './redux/authSlice'
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,9 @@ import Login from './pages/Login';
 import StartExam from './pages/StartExam';
 import Exam from './pages/Exam';
 import AdminLogin from './pages/AdminLogin';
+import Admin from './pages/Admin';
+import Questions from './pages/Questions';
+// import AuthVerify from './common/AuthVerify';
 
 function App() {
 
@@ -19,20 +22,25 @@ function App() {
     if(!token) {
       dispatch(setCredentials({user: currentUser, token: storageToken}))
     }
-  }, [token, dispatch])
+  }, [token, dispatch, currentUser, storageToken])
 
   return (
     <div className='app'>
       <Routes>
-        {!user?.isAdmin 
+      {!user?.isAdmin 
           ? <>
-              <Route path='/' element={!token ? <Login /> : <Navigate to='/start-exam'/>}/>
               <Route path='/start-exam' element={token  ? <StartExam /> : <Navigate to='/'/>}/>
               <Route path='/exam' element={token ? <Exam /> : <Navigate to='/'/>}/>
             </>
-          : <Route path='/admin' element={!token ? <AdminLogin /> : <Navigate to='/'/>}/>
+          : <>
+              <Route path='/' element={token ?  <Admin /> : <Navigate to='/admin'/> }/>
+              <Route path='/view-questions/:courseId' element={token ?  <Questions /> : <Navigate to='/' />}/>
+            </> 
         }
+        <Route path='/' element={token && !user?.isAdmin ? <Navigate to='/start-exam'/> : <Login />}/>
+        <Route path='/admin' element={token && user?.isAdmin ? <Navigate to='/' /> : <AdminLogin />}/>
       </Routes> 
+      {/* <AuthVerify /> */}
     </div>
   );
 }

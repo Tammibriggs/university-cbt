@@ -10,8 +10,7 @@ function AdminLogin() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const [adminLogin, result] = useAdminLoginMutation()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  
+
   const inputClass = `appearance-none h-[50px] border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-none focus:outline 
     ${result?.error ? 'border-red-600' : ' border-gray-300'}
   `;
@@ -21,8 +20,7 @@ function AdminLogin() {
     const response = await adminLogin(inputValues)
     if(response.data) {
       const {token, user, isAdmin} = response.data
-      console.log(token, user, isAdmin, 'These are the data')
-      dispatch(setCredentials({user:{...user, isAdmin}, isAdmin, token}))
+      dispatch(setCredentials({user:{...user, isAdmin}, token}))
       sessionStorage.setItem('currentUser', JSON.stringify({...user, isAdmin}))
       sessionStorage.setItem('token', token)
     }

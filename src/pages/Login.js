@@ -22,7 +22,7 @@ function Login() {
     const response = await login(inputValues)
     if(response.data) {
       const {token, user, isAdmin} = response.data
-      dispatch(setCredentials({user:{...user, isAdmin}, token, isAdmin}))
+      dispatch(setCredentials({user:{...user, isAdmin}, token}))
       sessionStorage.setItem('currentUser', JSON.stringify({...user, isAdmin}))
       sessionStorage.setItem('token', token)
     }
@@ -98,7 +98,7 @@ function Login() {
                   }
                 }}
                 displayEmpty
-                renderValue={(value) => value || 'Select-course-code' }
+                renderValue={(value) => value || 'Select-course' }
                 inputProps={{ 'aria-label': 'Without label' }}
                 onChange={handleInputChange}
               >
