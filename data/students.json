@@ -36,7 +36,7 @@
     "firstName": "Precious",
     "matNo": "U2019/5570005",
     "lastName": "Woke",
-    "registeredCourses": ["MATH110.1","GES100.1", "GES102.1", "PHY102.1", "CSC180.1"],
+    "registeredCourses": ["MATH110.1", "GES100.1", "GES102.1", "PHY102.1", "CSC180.1"],
     "roleId": "5fb94e35abab9450b0b71b69"
   },
   {
@@ -44,7 +44,7 @@
     "firstName": "Ray",
     "matNo": "U2020/5570001",
     "lastName": "White",
-    "registeredCourses": ["CSC281.1", "CSC3280.1", "CSC283.1", "CSC288.1", "CSC284.1", "MATH210.1", "MATH270.1"],
+    "registeredCourses": ["CSC281.1", "MATH110.1", "GES100.1", "CSC3280.1", "CSC283.1", "CSC288.1", "CSC284.1", "MATH210.1", "MATH270.1"],
     "roleId": "5fb94e35abab9450b0b71b69"
   },
   {
@@ -84,7 +84,7 @@
     "firstName": "Emmanuel",
     "matNo": "U2021/5570001",
     "lastName": "Promise",
-    "registeredCourses": ["CSC382.1", "CSC394.1", "CSC395.1", "CSC396.1", "CSC397.1", "GES300.1", "STAT370.1"],
+    "registeredCourses": ["CSC382.1", "MATH110.1", "CSC394.1", "CSC395.1", "CSC396.1", "CSC397.1", "GES300.1", "STAT370.1"],
     "roleId": "5fb94e35abab9450b0b71b69"
   },
   {

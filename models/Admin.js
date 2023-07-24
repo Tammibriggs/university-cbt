@@ -13,12 +13,7 @@ const AdminSchema = new Schema({
   },
   password: {
     type: String,
-  },
-  roleId: {
-    type: Schema.Types.ObjectId,
-    ref: "Role",
-    required: true,
-  },
+  }
 });
 
 AdminSchema.statics.hashAdminPassword = async function (password) {
@@ -39,7 +34,7 @@ AdminSchema.methods.generateToken = async function () {
       isAdmin: true,
     };
     const token = await jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "2h",
     });
     return token;
   } catch (err) {

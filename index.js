@@ -7,6 +7,8 @@ const cors = require("cors");
 const { populateDBWithCourseDetails, populateDBWithStudents, populateDbWithAdmin } = require("./utils/populateDB");
 const AuthRoute = require("./routes/AuthRoute")
 const CourseRoute = require("./routes/CourseRoute")
+const QuestionRoute = require("./routes/QuestionRoute")
+const UserRoute = require("./routes/UserRoute")
 
 dotenv.config();
 const app = express();
@@ -17,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI)
   console.log('Connected to Database')
   // populateDbWithAdmin()
   // populateDBWithCourseDetails()
-  // populateDBWithStudents()
+  // populateDBWithStudents() 
 })
 
 //middleware
@@ -29,7 +31,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
+app.use(UserRoute)
 app.use(CourseRoute)
+app.use(QuestionRoute)
 app.use(AuthRoute)
 
 app.listen(PORT, () => {

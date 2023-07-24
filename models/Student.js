@@ -18,8 +18,8 @@ const StudentSchema = new Schema({
     trim: true,
     unique: true
   },
-  password: {
-    type: String,
+  passwords: {
+    type: {},
   },
   registeredCourses: {
     type: Array, 
