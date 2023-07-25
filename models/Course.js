@@ -14,6 +14,7 @@ const CourseSchema = new Schema({
   title: {
     type: String,
     required: true,
+    unique: true,
   },
   questions: [
     {
@@ -29,14 +30,6 @@ const CourseSchema = new Schema({
     type: Number,
     default: 60 * 60 * 1000
   },
-  endingTime: {
-    type: Number,
-    default: 0
-  },
-  written: {
-    type: Boolean,
-    default: false
-  }
 });
 
 module.exports = mongoose.model("Course", CourseSchema);

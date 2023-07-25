@@ -15,22 +15,16 @@ const addQuestions = async (req, res, next) => {
   }
 }
 const getQuestions = async (req, res, next) => {
-  const { id } = req.body;
+  const { courseCode } = req.params;
   try {
-    const course = await CourseService.getCourseById(id);
-    const questions = await QuestionService.getQuestions(id);
-    if (!questions.length) {
-      return res
-        .status(404)
-        .send({ err: "No question available at the moment." });
-    }
-    const shuffledQuestions = shuffle(questions)
+    const course = await CourseService.getCourseByCode(courseCode);
+    const questions = await QuestionService.getQuestions(course._id);
+
+    const shuffledQuestions = shuffle(questions || [])
 
     return res.status(200).send({ questions: shuffledQuestions, courseCode: course?.code});
   } catch (err) {
-    return res
-      .status(500)
-      .send({ err: "A server error occurred while fetching questions." });
+    return res.status(500).send({ code:'internal-error', message: "A server error occurred while trying to fetching questions" });
   }
 }
 

@@ -24,6 +24,15 @@ const StudentSchema = new Schema({
   registeredCourses: {
     type: Array, 
   },
+  startCourse: {
+    type: {
+      course: String,
+      endingTime: Number
+    },
+  },
+  writtenCourse: {
+    type: Array,
+  }
 });
 
 // Salting and Hashing the user password with bcrypt

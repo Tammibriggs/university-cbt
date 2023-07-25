@@ -44,4 +44,19 @@ const adminGetQuestions = async (courseId) => {
   }
 }
 
-module.exports = {processFormData, createQuestion, adminGetQuestions}
+const getQuestions = async (courseId) => {
+  try {
+    const questions = await Question.find({ courseId }).select("-answer");
+    return questions;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+module.exports = {
+  processFormData, 
+  createQuestion, 
+  adminGetQuestions, 
+  getQuestions
+}

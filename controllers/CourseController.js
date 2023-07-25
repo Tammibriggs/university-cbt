@@ -19,6 +19,16 @@ const getCourseById = async (req, res, next) => {
   }
 }
 
+const getCourseByCode = async (req, res, next) => {
+  const courseCode = req.params.courseCode;
+  try {
+    const course = await CourseService.getCourseByCode(courseCode);
+    return res.status(200).send(course);
+  } catch (err) {
+    res.status(500).send({ code:'internal-error', message: "A server error occurred while trying to add a course" });
+  }
+}
+
 const getCourses = async (req, res) => {
   try {
     const courses = await CourseService.getCourses()
@@ -74,4 +84,5 @@ module.exports = {
   getCourseById,
   changeCourseStatus,
   deleteCourse,
+  getCourseByCode
 }

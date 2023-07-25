@@ -9,6 +9,6 @@ const { verifyAdmin, verifyToken } = require("../middleware/auth");
 
 router.post("/api/admin/add-questions", verifyAdmin, addQuestions);
 router.get("/api/admin/questions/:courseId", verifyAdmin, adminGetQuestions);
-router.get("/api/questions/:courseId", verifyToken, getQuestions);
+router.get("/api/questions/:courseCode", verifyToken, getQuestions);
 
 module.exports = router;

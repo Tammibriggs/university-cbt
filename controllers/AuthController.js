@@ -2,23 +2,26 @@ const UserService = require("../services/UserService");
 
 const login = async (req, res) => {
   const { matNo, password, courseCode } = req.body;
+  const coursePasswordFieldName = courseCode.substring(0, courseCode.length - 2)
   try {
     const user = await UserService.findUserByParams({
       matNo: matNo.trim().toUpperCase(),
     });
     if (!user) return res.status(401).send({ code:'invalid-credential', message: "Invalid login details" });
-    const isMatch = await UserService.doesPasswordMatch(
-      password,
-      user.password
-    );
-    if (!isMatch) return res.status(401).send({ code:'invalid-credential', message: "Invalid login details" });
-    
+
+    // Check if password is correct
+    if(!user.passwords[coursePasswordFieldName] || user.passwords[coursePasswordFieldName] !== password) {
+      return res.status(401).send({ code:'invalid-credential', message: "Invalid login details" });
+    }
+
     // Verify if user is registered for a course. If not, return error message
     const isCourseRegistered = user.registeredCourses.includes(courseCode);
     if(!isCourseRegistered) return res.status(401).send({ code: 'invalid-course', message: "You are not registered for this course" });
 
-    const token = await user.generateToken();
-    res.status(200).send({ user, token, isAdmin: false});
+    const student = await UserService.updateStudent(user._id, {$set: {"startCourse.course": courseCode}})
+    const token = await student.generateToken(); 
+
+    res.status(200).send({ user: student, token, isAdmin: false});
   } catch (err) {
     return res.status(500).send({ code:'internal-error', message: "A server error occurred while trying to login user" });
   }

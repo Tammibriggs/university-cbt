@@ -65,6 +65,18 @@ const deleteCoursePasswords = async (courseCode) => {
   }
 }
 
+const updateStudent = async (studentId, params) => {
+  console.log(studentId, params)
+  try {
+    const student = await Student.findOneAndUpdate({_id: studentId}, params, {
+      new : true
+    })
+    return student
+  }catch (err) {
+    return null;
+  }
+}
+
 module.exports = {
   findUserByParams, 
   doesPasswordMatch, 
@@ -72,4 +84,5 @@ module.exports = {
   getStudentsOfACourse,
   generateCoursePasswords,
   deleteCoursePasswords,
+  updateStudent
 }
