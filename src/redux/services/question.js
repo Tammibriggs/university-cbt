@@ -14,9 +14,16 @@ const questionApi = api.injectEndpoints({
     }),
     getAdminQuestions: builder.query({
       query: (courseId) => `admin/questions/${courseId}`,
+    }),
+    getQuestions: builder.query({
+      query: (courseId) => `questions/${courseId}`,
     })
   }),
   overrideExisting: false,
 })
 
-export const { useAddQuestionsMutation, useGetAdminQuestionsQuery } = questionApi
+export const { 
+  useAddQuestionsMutation, 
+  useGetAdminQuestionsQuery,
+  useGetQuestionsQuery
+} = questionApi

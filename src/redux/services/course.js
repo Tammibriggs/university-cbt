@@ -8,6 +8,9 @@ const courseApi = api.injectEndpoints({
     getCourseById: builder.query({
       query: (id) => `course/${id}`,
     }),
+    getCourseByCode: builder.query({
+      query: (courseCode) => `course/code/${courseCode}`,
+    }),
     getCourses: builder.query({
       query: () => `admin/courses`,
       providesTags: ['Courses']
@@ -55,5 +58,6 @@ export const {
   useLazyGetCourseByIdQuery,
   useLazyGetCoursesQuery,
   useChangeCourseStatusMutation,
-  useDeleteCourseMutation
+  useDeleteCourseMutation,
+  useGetCourseByCodeQuery,
 } = courseApi

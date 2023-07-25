@@ -9,7 +9,7 @@ import Exam from './pages/Exam';
 import AdminLogin from './pages/AdminLogin';
 import Admin from './pages/Admin';
 import Questions from './pages/Questions';
-// import AuthVerify from './common/AuthVerify';
+import Result from './pages/Result';
 
 function App() {
 
@@ -31,6 +31,7 @@ function App() {
           ? <>
               <Route path='/start-exam' element={token  ? <StartExam /> : <Navigate to='/'/>}/>
               <Route path='/exam' element={token ? <Exam /> : <Navigate to='/'/>}/>
+              <Route path='/result' element={token ? <Result /> : <Navigate to='/'/>}/>
             </>
           : <>
               <Route path='/' element={token ?  <Admin /> : <Navigate to='/admin'/> }/>
@@ -40,7 +41,6 @@ function App() {
         <Route path='/' element={token && !user?.isAdmin ? <Navigate to='/start-exam'/> : <Login />}/>
         <Route path='/admin' element={token && user?.isAdmin ? <Navigate to='/' /> : <AdminLogin />}/>
       </Routes> 
-      {/* <AuthVerify /> */}
     </div>
   );
 }

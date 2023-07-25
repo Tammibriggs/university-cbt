@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDeleteCoursePasswordsMutation, useGenerateCoursePasswordsMutation, useGetCourseStudentsQuery } from "../redux/services/user"
 import { FormControl, MenuItem, Select } from "@mui/material"
 import { useGetCourseCodesQuery } from "../redux/services/course";
@@ -6,17 +6,11 @@ import { useGetCourseCodesQuery } from "../redux/services/course";
 function StudentsAdmin() {
 
   const [courseCode, setCourseCode] = useState('')
-  const [courseTitle, setCourseTitle] = useState('');
   
   const [generateCoursePasswords, generateCoursePasResult] = useGenerateCoursePasswordsMutation()
-  const [deleteCoursePasswords, deleteCoursePasResult] = useDeleteCoursePasswordsMutation()
+  const [deleteCoursePasswords] = useDeleteCoursePasswordsMutation()
   const {data: students, isLoading, isFetching, refetch } = useGetCourseStudentsQuery(courseCode, {skip: !courseCode})
   const {data: courseCodes} = useGetCourseCodesQuery()
-
-  useEffect(() => {
-    const course = courseCodes?.find(course => course.code === courseCode)
-    setCourseTitle(course?.title)
-  },[courseCodes, courseCode])
 
   const hasPassword = () => {
     if(students?.length && !isFetching && students[0].passwords) {

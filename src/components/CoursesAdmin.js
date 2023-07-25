@@ -67,7 +67,7 @@ function CourseAdmin() {
   const readUploadFile = (e) => {
     e.preventDefault();
     setFile(e.target.files)
-    if (e.target.files) {
+    if (e.target.files.length) {
       const reader = new FileReader();
       reader.onload = (e) => {
         const data = e.target.result;

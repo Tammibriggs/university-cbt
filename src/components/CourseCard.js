@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Eye, EyeSlash, Notebook, TrashSimple, Warning } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
 import { useChangeCourseStatusMutation, useGetCoursesQuery, useDeleteCourseMutation } from "../redux/services/course";
-import Countdown, { zeroPad } from 'react-countdown';
 
 function CourseCard({course}) {
 
@@ -26,7 +25,6 @@ function CourseCard({course}) {
 
   const handleChangeCourseStatus = async (e) => {
     e.stopPropagation();
-    if(course.written) return;
     // Publish course
     if(!course.isAvailable) {
       const alreadyPublishedCourse = courses.find(course => course.isAvailable === true)
@@ -37,16 +35,9 @@ function CourseCard({course}) {
         setIsACourseAlreadyPublished(true)
       }
     }else { // Unpublish course
-      if(course.endingTime > Date.now()) setIsOngoingCourse(true)
-      else changeStatus(e)
+      setIsOngoingCourse(true)
     }
   };
-
-  const renderer = ({ hours, minutes, seconds }) => (
-    <span className="text-xl mt-2 text-[#344d87]">
-      {zeroPad(hours)}: {zeroPad(minutes)}:{zeroPad(seconds)}
-    </span>
-  );
 
   return (
     <>
@@ -59,7 +50,6 @@ function CourseCard({course}) {
       </div>
       <div className='flex flex-grow flex-col ml-16'>
         <div className='flex gap-1 mb-3 justify-end'>
-          {course.written && <span className="text-green-600">Written</span>}
           {course.isAvailable 
             ? <i title="unpublish"><Eye size={25} className="text-green-500 hover:text-gray-500" onClick={handleChangeCourseStatus}/></i> 
             : <i title="publish">
@@ -77,7 +67,6 @@ function CourseCard({course}) {
         <p className="text-base text-gray-500">
           <span className="font-bold">{course.questions.length ? course.questions.length : 0}</span> questions
         </p>
-        {course.endingTime !== 0 && <Countdown date={course.endingTime} onComplete={() => changeCourseStatus(course._id)}  renderer={renderer} />}
       </div>
     </div>
     {isDeleteModalOpen &&

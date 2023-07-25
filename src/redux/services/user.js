@@ -6,6 +6,13 @@ const userApi = api.injectEndpoints({
       query: () => 'users',
       providesTags: ['User']
     }),
+    getResult: builder.query({
+      query: (courseCode) => `result/${courseCode}`,
+      providesTags: ['Result']
+    }),
+    getResults: builder.query({
+      query: (courseCode) => `results/${courseCode}`,
+    }),
     getUserById: builder.query({
       query: ({id}) => `users/${id}/user`,
       providesTags: ['User']
@@ -31,6 +38,26 @@ const userApi = api.injectEndpoints({
          courseCode
         }
       }),
+    }),
+    startExam: builder.mutation({
+      query: ({studentId, courseCode}) => ({
+        url: 'start-exam',
+        method: 'POST',
+        body: {
+          studentId,
+         courseCode
+        }
+      }),
+    }),
+    saveResult: builder.mutation({
+      query: ({answers, courseCode}) => ({
+        url: 'submit-result',
+        method: 'POST',
+        body: {
+          answers,
+         courseCode
+        }
+      }),
     })
   }), 
   overrideExisting: false,
@@ -42,5 +69,9 @@ export const {
   useLazyGetUserByIdQuery,
   useGetCourseStudentsQuery,
   useGenerateCoursePasswordsMutation,
-  useDeleteCoursePasswordsMutation
+  useDeleteCoursePasswordsMutation,
+  useStartExamMutation,
+  useSaveResultMutation,
+  useGetResultQuery,
+  useGetResultsQuery
 } = userApi
