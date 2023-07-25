@@ -7,11 +7,12 @@ const ExamOption = ({ option, questionId }) => {
   const [optionLabel, optionText] = Object.entries(option)[0];
   const storageAnswers = sessionStorage.getItem("answers")
   const { currentIndex, answers } = useSelector((state) => state.exam); 
+  console.log(option, 'option')
   const dispatch = useDispatch()
   
   useEffect(() => {
     if(!answers.length && storageAnswers) {
-      dispatch(setAnswers(JSON.parse(storageAnswers)))
+      // dispatch(setAnswers(JSON.parse(storageAnswers)))
     }else {
       sessionStorage.setItem("answers", JSON.stringify(answers))
     }

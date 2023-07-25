@@ -114,7 +114,7 @@ function Exam() {
           </section>
           { user.startCourse.endingTime && 
             <section className="timer mt-auto flex justify-center">
-              <Countdown date={user.startCourse.endingTime} onComplete={submit}  renderer={renderer} />
+              {/* <Countdown date={user.startCourse.endingTime} onComplete={submit}  renderer={renderer} /> */}
             </section>
           }
         </section>

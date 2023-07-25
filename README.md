@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Uniport Faculty of Computing CBT Examination Portal -- FRONTEND
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React.js, Node.js and MongoDB application that faciliate a Computer Based Test Portal for the students in the University of Port Harcourt's Faculty of Computing.
 
-## Available Scripts
+The student uses their matriculation number and an assigned password to login in oreder take their examintion. The lecturer (or admin) uses their username and password to upload exam questions as an excel file.
 
-In the project directory, you can run:
+During the login the student select's the course he/she want to write. If the course is avaialbe (it has been published by the admin) he/she can start the exam and if not the exam can't be taken. The student also sees their exam scores immediately they submit their exam or their time runs out.
 
-### `npm start`
+The lecturer (or admin) is able to see every score of the user and download an excel file that holds the data for result uploading
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository down to your local machine
+   `git clone https://github.com/Tammibriggs/university-cbt.git`
 
-### `npm test`
+2. Change directory to the `project` directory\
+   `cd university-cbt`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Install dependencies based on your package manager\
+   `npm install`
 
-### `npm run build`
+8. Create a `.env` file and supply the environment variables defined in the .env.example file.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To start the application, run the following command: `npm start`.\
+The application will be available at <http://localhost:3000>.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
+This project is licensed under the **[MIT License](https://mit-license.org/)**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Resources
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Node.js](nodejs.org) - Official website for Node.js
+- [React.js](react.dev) = Official website for React.js
+- [NPM](npmjs.com) - Official website for NPM
+- [Express.js](expressjs.com) - Official website for Express.js
+- [MongoDB](mongodb.com) - Official website for MongoDB
+- [Mongoose.js](mongoosejs.com) - Official website for Mongoose
