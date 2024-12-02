@@ -35,6 +35,19 @@ const getResult = async (req, res) => {
   }
 }
 
+const deleteResult = async (req, res) => {
+  const {id} = req.user
+  const {courseCode} = req.params
+  try {
+    await Result.deleteOne({userId: id, courseCode})
+    const updatedStudent = (await UserService.updateStudent(id, {$set: {"startCourse.course": courseCode}}))._doc
+    res.status(200).json({...updatedStudent, isAdmin: false})
+  }catch (err) {
+    console.log(err)
+    return res.status(500).send({ code:'internal-error', message: "A server error occurred while trying to delete result" });
+  }
+}
+
 const getResults = async (req, res) => {
   const {courseCode} = req.params
   try {
@@ -79,7 +92,9 @@ const saveStudentResult = async (req, res) => {
 
   try {
     const student = await Student.findById(id)
-    if(student.startCourse.course !== courseCode || !student.startCourse?.endingTime) return res.status(409).send({code: 'unprocessable', message: 'You need to start a course before submitting it'})
+    if(student.startCourse.course !== courseCode || !student.startCourse?.endingTime) {
+      return res.status(409).send({code: 'unprocessable', message: 'You need to start a course before submitting it'})
+    }
 
     const resultDB = await Result.findOne({userId: id, courseCode})
     if(resultDB) return res.status(403).send({code: 'not-allowed', message: 'You have already written this course'})
@@ -103,6 +118,24 @@ const saveStudentResult = async (req, res) => {
   }
 }
 
+const getAvailableUser = async (req, res) => {
+ try {
+    const students = await Student.find({registeredCourses: {$in: ['CSC281.1']}})
+    const fiveMinutesFromNow = Date.now() + 5 * 60 * 1000; // 5 minutes in milliseconds
+    let availableUser = students.find(student => 
+      !student.startCourse?.endingTime || student.startCourse?.endingTime < fiveMinutesFromNow
+    )
+
+    await Result.deleteOne({userId: availableUser._id, courseCode: 'CSC281.1'})
+    availableUser = (await UserService.updateStudent(availableUser._id, {$set: {"startCourse.endingTime": 0}}))._doc
+
+    return res.status(200).json(availableUser)
+  
+ }catch(err) {
+  return res.status(500).json({ code:'internal-error', message: "A server error occurred while trying to save result" });
+ }
+}
+
 module.exports = {
   getStudentsOfACourse,
   generateCoursePasswords,
@@ -110,5 +143,7 @@ module.exports = {
   startExam,
   saveStudentResult,
   getResult,
-  getResults
+  getResults,
+  deleteResult,
+  getAvailableUser
 }

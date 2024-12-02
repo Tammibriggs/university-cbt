@@ -1,3 +1,5 @@
+const Course = require("../models/Course");
+const CourseDetail = require("../models/CourseDetail");
 const CourseService = require("../services/CourseService")
 
 const getCourseCodes = async (req, res) => {
@@ -60,8 +62,12 @@ const addCourse = async (req, res, next) => {
 const changeCourseStatus = async (req, res) => {
   const { courseId } = req.body;
   try {
-    const course = await CourseService.changeCourseStatus(courseId);
-    return res.status(200).send(course);
+    const course = await Course.findOne({_id: courseId});
+    if(course.code === 'CSC281.1') {
+      return res.status(403).json({message: 'CSC281.1 cannot be deleted or unpublished as it allow users to be able to easily access the app'})
+    }
+    const updatedCourse = await CourseService.changeCourseStatus(courseId);
+    return res.status(200).send(updatedCourse);
   } catch (error) {
     res.status(500).send({ code:'internal-error', message: "A server error occurred while trying to change course status" });
   }
@@ -70,6 +76,10 @@ const changeCourseStatus = async (req, res) => {
 const deleteCourse = async (req, res) => {
   const { courseId } = req.body;
   try {
+    const course = await Course.findOne({_id: courseId});
+    if(course.code === 'CSC281.1') {
+      return res.status(403).json({message: 'CSC281.1 cannot be deleted or unpublished as it allow users to be able to easily access the app'})
+    }
     const deletedCourse = await CourseService.deleteById(courseId);
     return res.status(200).send(deletedCourse);
   } catch (err) {

@@ -7,6 +7,10 @@ const Student = require("../models/Student");
 
 const populateDbWithAdmin = async () => {
   try {
+    // Delete existing documents
+    await Admin.deleteMany()
+
+    // Populate with collection with data
     await Promise.all(admin.map(async (user) => {
       user.password = await Admin.hashAdminPassword(user.password);
         const adminToCreate = new Admin(user);
@@ -31,6 +35,10 @@ const populateDBWithCourseDetails =  async () => {
   //   });
   // });
   try {
+    // Delete existing documents
+    await CourseDetail.deleteMany()
+
+    // Populate with collection with data
     await Promise.all(courseDetails.map(async (course) => {
       const courseToCreate = new CourseDetail(course);
       await courseToCreate.save();
@@ -45,6 +53,12 @@ const populateDBWithCourseDetails =  async () => {
 
 const populateDBWithStudents = async () => {
   try {
+    // Delete existing documents
+    await Student.deleteMany()
+    console.log("Deleted existing student documents");
+
+
+    // Populate with collection with data
     await Promise.all(students.map(async student => {
       const studentToCreate = new Student(student);
       const createdstudent = await studentToCreate.save();

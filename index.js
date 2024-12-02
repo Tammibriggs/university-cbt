@@ -9,6 +9,7 @@ const AuthRoute = require("./routes/AuthRoute")
 const CourseRoute = require("./routes/CourseRoute")
 const QuestionRoute = require("./routes/QuestionRoute")
 const UserRoute = require("./routes/UserRoute")
+const serverless = require('serverless-http')
 
 dotenv.config();
 const app = express();
@@ -22,9 +23,9 @@ mongoose.connect(process.env.MONGODB_URI)
   // populateDBWithStudents() 
 })
 
-//middleware
+// middleware
 const corsOption = {
-  origin: "http://localhost:3000",
+  origin: process.env.ALLOWED_HOST,
 };
 app.use(cors(corsOption));
 app.use(express.json());
@@ -36,6 +37,13 @@ app.use(CourseRoute)
 app.use(QuestionRoute)
 app.use(AuthRoute)
 
+app.get('/hello', (req, res) => {
+  res.send('Hello World')
+})
+
 app.listen(PORT, () => {
   console.log("Backend server is running on port " + PORT);
 });
+
+// AWS LAMBA
+// module.exports.handler = serverless(app)

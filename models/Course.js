@@ -28,7 +28,7 @@ const CourseSchema = new Schema({
   },
   completeTime: {
     type: Number,
-    default: 60 * 60 * 1000
+    default: 5 * 60 * 1000
   },
 });
 

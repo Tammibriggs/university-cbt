@@ -66,7 +66,6 @@ const deleteCoursePasswords = async (courseCode) => {
 }
 
 const updateStudent = async (studentId, params) => {
-  console.log(studentId, params)
   try {
     const student = await Student.findOneAndUpdate({_id: studentId}, params, {
       new : true

@@ -21,12 +21,12 @@ The lecturer (or admin) is able to see every score of the user and download an e
 
 7. Create a MongoDB database via the cloud-based service. Make a note of the URL for the connection.
 
-8. Create a `.env` file and supply the environment variables defined in the .env.example file.
+8. Create a `.env` file and supply the environment variables defined in the `.env.example` file.
 
 ## Usage
 
 To start the application, run the following command: `npm run dev`.\
-The application will be available at <http://localhost:PORT>. Replace PORT with the port you are working on.
+The application will be available at <http://localhost:PORT>. Replace PORT with the port you are working on. Which by default is `5000`.
 
 ## License
 
