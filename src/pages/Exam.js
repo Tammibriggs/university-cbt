@@ -17,20 +17,20 @@ function Exam() {
   
   const user = useSelector((state) => state.auth.user) 
   const { currentIndex, answers } = useSelector((state) => state.exam); 
-  const {data: course} = useGetCourseByCodeQuery(user.startCourse.course)
-  const {data: questions} = useGetQuestionsQuery(user.startCourse.course)
-  const [submitAnsers] = useSaveResultMutation()
+  const {data: course} = useGetCourseByCodeQuery(user?.startCourse?.course, {skip: !user?.startCourse?.course})
+  const {data: questions} = useGetQuestionsQuery(user?.startCourse?.course, {skip: !user?.startCourse?.course})
+  const [submitAnswers, submitResult] = useSaveResultMutation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     if(user) {
-      !user.startCourse.endingTime && navigate('/start-exam')
+      !user?.startCourse?.endingTime && navigate('/start-exam')
     }
   }, [user, navigate])
 
   const submit = async () => {
-    const res = await submitAnsers({answers, courseCode: user.startCourse.course})
+    const res = await submitAnswers({answers, courseCode: user?.startCourse?.course})
     if(res.data) navigate('/result')
   }
 
@@ -38,24 +38,23 @@ function Exam() {
     return answers?.some(answer => answer.questionId === question._id)
   };
 
-  const renderer = ({ hours, minutes, seconds,  }) => (
-    <span className="text-3xl font-bold">
+  const renderer = ({ hours, minutes, seconds }) => (
+    <span className={`text-3xl font-bold ${minutes < 2 ? 'text-orange-500' : ''}`}>
       {zeroPad(hours)}: {zeroPad(minutes)}:{zeroPad(seconds)}
     </span>
   );
-
 
   return (
     <div className="bg-gray-100 h-screen">
        <>
         <nav className="h-16 flex items-center px-8 shadow-sm">
           <p className="mr-auto">{todaysDate()}</p>
-          <p className="mr-4">{user.firstName + ' ' + user.lastName}</p>
+          <p className="mr-4">{user?.firstName + ' ' + user?.lastName}</p>
           <button
-            className="px-2 py-2 bg-red-200 text-red-800 text-sm font-semibold rounded-lg"
+            className="px-2 py-2 bg-orange-200 text-orange-800 text-sm font-semibold rounded-lg"
             onClick={() => setOpenModal(true)}
           >
-            End exam
+            Submit Exam
           </button>
         </nav>
         {openModal && 
@@ -63,7 +62,7 @@ function Exam() {
             open={openModal}
             onClose={(e) => {e.stopPropagation(); setOpenModal(false)}}
           >
-            <Warning className='text-red-400 m-auto' size={100}/>
+            <Warning className='text-orange-400 m-auto' size={100}/>
             <h3 className="text-center">
               Do you want to submit this exam?
             </h3>
@@ -74,11 +73,12 @@ function Exam() {
               >
                 Cancel
               </button>
-              <button
-                className="text-xs border px-8 py-2 rounded border-red-500 text-red-800 font-semibold mx-4 bg-red-100 hover:bg-red-300"
+              <button 
+                disabled={submitResult.isLoading}
+                className={`text-xs border px-8 py-2 rounded font-semibold mx-4  ${submitResult.isLoading ?  'bg-none border-slate-500 text-slate-800'  : 'border-orange-500 text-orange-800 bg-orange-100 hover:bg-orange-300'}`}
                 onClick={submit}
               >
-                Submit
+                {submitResult.isLoading ? 'Submitting...' : 'Yes, Submit'}
               </button>
             </div>
           </Modal>
@@ -91,7 +91,7 @@ function Exam() {
               {course?.title} ({course?.code})
             </h2>
           }
-          <ExamCard />
+          <ExamCard  />
         </div>
         <section className="list p-4 flex w-1/5 flex-col min-w-[200px]">
           <section className="question-list flex gap-2 flex-wrap px-4 min-w-[200px]">
@@ -112,9 +112,10 @@ function Exam() {
               </div>
             ))}
           </section>
-          { user.startCourse.endingTime && 
+          { user?.startCourse?.endingTime && 
             <section className="timer mt-auto flex justify-center">
-              {/* <Countdown date={user.startCourse.endingTime} onComplete={submit}  renderer={renderer} /> */}
+              {console.log(user.startCourse.endingTime)}
+              <Countdown date={user.startCourse.endingTime} onComplete={submit} renderer={renderer} />
             </section>
           }
         </section>

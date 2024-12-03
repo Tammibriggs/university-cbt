@@ -75,7 +75,7 @@ function ResultsAdmin() {
                   }
                 }}
                 displayEmpty
-                renderValue={(value) => value || 'Select-a-course' }
+                renderValue={(value) => value || 'Select a course' }
                 inputProps={{ 'aria-label': 'Without label' }}
                 onChange={(e) => setCourseCode(e.target.value)}
               >

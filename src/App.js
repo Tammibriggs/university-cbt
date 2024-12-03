@@ -10,6 +10,8 @@ import AdminLogin from './pages/AdminLogin';
 import Admin from './pages/Admin';
 import Questions from './pages/Questions';
 import Result from './pages/Result';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -29,18 +31,19 @@ function App() {
       <Routes>
       {!user?.isAdmin 
           ? <>
-              <Route path='/start-exam' element={token  ? <StartExam /> : <Navigate to='/'/>}/>
-              <Route path='/exam' element={token ? <Exam /> : <Navigate to='/'/>}/>
-              <Route path='/result' element={token ? <Result /> : <Navigate to='/'/>}/>
+              <Route path='/start-exam' element={storageToken  ? <StartExam /> : <Navigate to='/'/>}/>
+              <Route path='/exam' element={storageToken ? <Exam /> : <Navigate to='/'/>}/>
+              <Route path='/result' element={storageToken ? <Result /> : <Navigate to='/'/>}/>
             </>
           : <>
-              <Route path='/' element={token ?  <Admin /> : <Navigate to='/admin'/> }/>
-              <Route path='/view-questions/:courseId' element={token ?  <Questions /> : <Navigate to='/' />}/>
+              <Route path='/' element={storageToken ?  <Admin /> : <Navigate to='/admin'/> }/>
+              <Route path='/view-questions/:courseId' element={storageToken ?  <Questions /> : <Navigate to='/' />}/>
             </> 
         }
-        <Route path='/' element={token && !user?.isAdmin ? <Navigate to='/start-exam'/> : <Login />}/>
-        <Route path='/admin' element={token && user?.isAdmin ? <Navigate to='/' /> : <AdminLogin />}/>
-      </Routes> 
+        <Route path='/' element={storageToken && !user?.isAdmin ? <Navigate to='/start-exam'/> : <Login />}/>
+        <Route path='/admin' element={storageToken && user?.isAdmin ? <Navigate to='/' /> : <AdminLogin />}/>
+      </Routes>  
+      <ToastContainer />
     </div>
   );
 }

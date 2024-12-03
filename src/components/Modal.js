@@ -1,25 +1,24 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import '../styles/modal.css'
 import {X} from '@phosphor-icons/react'
 
 function Modal({open, modalLable, children, onClose, custom_modal}) {
+  const backdropRef = useRef();
 
   useEffect(() => {
     document.body.classList.toggle('noscroll', open)
   }, [open])
 
   const handleClose = (e) => {
-    if(e.target.className === 'modalContainer'){
-      onClose(e)
-    }else if(e.target.className?.split(' ')[0] === 'modalContainer') {
-      onClose(e)
+    if (backdropRef.current === e.target) {
+      onClose(e);
     }
-    return null
-  }
+    return null;
+  };
  
   if(open) {
     return (
-      <div className={`modalContainer ${custom_modal}`} onClick={handleClose}>
+      <div ref={backdropRef} className={`modalContainer ${custom_modal}`} onClick={handleClose}>
         <div className= 'modal'>
           <div className='modal__head'>
             <h2>{modalLable}</h2>

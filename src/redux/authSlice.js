@@ -10,11 +10,17 @@ const slice = createSlice({
     ) => {
       state.user = user
       state.token = token
-    }
+    },
+    setUser: (
+      state,
+      { payload: { user } }
+    ) => {
+      state.user = user
+    },
   },
 });
 
-export const { setCredentials } = slice.actions;
+export const { setCredentials, setUser } = slice.actions;
 
 export default slice.reducer;
 

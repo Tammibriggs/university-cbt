@@ -58,7 +58,7 @@ function StudentsAdmin() {
                   }
                 }}
                 displayEmpty
-                renderValue={(value) => value || 'Select-a-course' }
+                renderValue={(value) => value || 'Select a course' }
                 inputProps={{ 'aria-label': 'Without label' }}
                 onChange={(e) => setCourseCode(e.target.value)}
               >
@@ -133,7 +133,7 @@ function StudentsAdmin() {
                 }
               </div>
               <table className='w-full max-w-[1100px] mt-[40px] border border-solid border-gray-200'>
-                <thead className='flex px-3 bg-[#344d87] text-white'>
+                <thead className='flex px-3 bg-slate-200 text-black'>
                   <tr className="basis-[35%] py-6"><td className='text-xl'>Full Name</td></tr>
                   <tr className="basis-[35%] py-6"><td className='text-xl'>Matriculation Number</td></tr>
                   <tr className="basis-[30%] py-6"><td className='text-xl'>Password</td></tr>

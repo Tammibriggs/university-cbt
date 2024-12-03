@@ -27,7 +27,7 @@ const courseApi = api.injectEndpoints({
       }))
     }),
     changeCourseStatus: builder.mutation({
-      query: (courseId) => ({
+      query: (courseId, currentStatus) => ({
         url: 'admin/course/status',
         method: 'POST',
         body: {

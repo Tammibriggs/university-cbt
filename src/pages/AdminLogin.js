@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAdminLoginMutation } from "../redux/services/auth"
 import { useDispatch } from "react-redux";
 import {setCredentials} from '../redux/authSlice'
-import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
 
-  const [inputValues, setInputValues] = useState({})
+  const [inputValues, setInputValues] = useState({username: 'admin', password: 'admin'})
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const [adminLogin, result] = useAdminLoginMutation()
   const dispatch = useDispatch()
@@ -38,14 +37,12 @@ function AdminLogin() {
           <h2 className="font-black text-4xl mb-4 leading-[45px] font-serif">
             WELCOME TO FACULTY OF COMPUTING EXAMINATION PORTAL
           </h2>
-          <p className="text-base">
-            LOGIN WITH YOUR ADMIN CREDENTIALS
-          </p>
+          <p className="text-base">LOGIN WITH YOUR ADMIN CREDENTIALS</p>
         </article>
         <div className="w-1/2 max-w-sm">
           {result?.error && (
             <div className=" bg-red-100 text-red-800 font-semibold shadow-md rounded px-8 py-2 my-4">
-              {result.error.data.message}
+              {result.error.data?.message}
             </div>
           )}
           <form
@@ -53,44 +50,41 @@ function AdminLogin() {
             onSubmit={handleAdminLogin}
           >
             <div className=" pb-4">
-              <label className="text-sm block pb-2">
-                USERNAME
-              </label>
+              <label className="text-sm block pb-2">USERNAME</label>
               <input
                 type="text"
                 name="username"
-                value={inputValues.username || ''}
+                value={inputValues.username || ""}
                 className={inputClass}
                 placeholder="Enter your username"
                 onChange={handleInputChange}
               />
             </div>
             <div className="pb-4 pt-4">
-              <label
-                htmlFor="password"
-                className="text-sm block pb-2"
-              >
+              <label htmlFor="password" className="text-sm block pb-2">
                 PASSWORD
               </label>
               <input
-                type={isPasswordVisible ? 'text' : "password"}
+                type={isPasswordVisible ? "text" : "password"}
                 name="password"
-                value={inputValues.password || ''}
+                value={inputValues.password || ""}
                 className={inputClass}
                 placeholder="Enter your password"
                 onChange={handleInputChange}
               />
               <div className="text-gray-500 flex items-center mt-3">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                  className="w-5 h-5 mr-2"/> 
+                  className="w-5 h-5 mr-2"
+                />
                 Show Password
               </div>
             </div>
             <div className="w-full text-right">
               <button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                disabled={result.isLoading}
+                className="bg-blue-500 disabled:bg-slate-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 SIGN IN
@@ -100,7 +94,7 @@ function AdminLogin() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default AdminLogin

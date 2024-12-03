@@ -4,11 +4,12 @@ import { setCredentials } from '../authSlice'
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ 
-    baseUrl: process.env.REACT_APP_SEVER_BASE_URL,
+    baseUrl: `${process.env.REACT_APP_SEVER_BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token
+     
       if (token) {
-        headers.set('authorization', `Bearer ${token}`)
+        headers.set('Authorization', `Bearer ${token}`)
       }
       return headers
     },

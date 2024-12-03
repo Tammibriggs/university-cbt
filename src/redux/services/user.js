@@ -58,9 +58,19 @@ const userApi = api.injectEndpoints({
          courseCode
         }
       }),
-    })
+    }),
+    deleteResult: builder.mutation({
+      query: (courseCode) => ({
+        url: `delete-result/${courseCode}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Result']
+    }),
+    getAvailableUser: builder.query({
+      query: () => `users/get-available-user`,
+    }),
   }), 
-  overrideExisting: false,
+  overrideExisting: true,
 })
 
 export const { 
@@ -73,5 +83,7 @@ export const {
   useStartExamMutation,
   useSaveResultMutation,
   useGetResultQuery,
-  useGetResultsQuery
+  useGetResultsQuery,
+  useDeleteResultMutation,
+  useGetAvailableUserQuery
 } = userApi

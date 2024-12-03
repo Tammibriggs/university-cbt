@@ -11,18 +11,18 @@ import { api } from '../redux/services/api'
 function StartExam() {
 
   const user = useSelector((state) => state.auth.user) 
-  const {data: course, isLoading} = useGetCourseByCodeQuery(user.startCourse.course)
-  const {data: result, isLoading: resultIsLoading} = useGetResultQuery(user?.startCourse?.course, {skip: !user?.startCourse?.course})
-  const [startExam] = useStartExamMutation()
+  const {data: course, isLoading} = useGetCourseByCodeQuery(user?.startCourse?.course)
+  const {data: result, isLoading: resultIsLoading, isFetching: resultIsFetching} = useGetResultQuery(user?.startCourse?.course, {skip: !user?.startCourse?.course})
+  const [startExam, startExamResult] = useStartExamMutation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     if(!resultIsLoading) {
-      if(result) navigate('/result');
-      else if (user.startCourse.endingTime) navigate('/exam')
+      if(result && user?.startCourse?.endingTime) navigate('/result');
+      else if (user?.startCourse?.endingTime) navigate('/exam')
     }
-  }, [user, resultIsLoading, navigate, result])
+  }, [user, resultIsLoading, resultIsFetching, navigate, result])
 
   const startCourse = async () => {
     const res = await startExam({studentId: user._id, courseCode: user.startCourse.course})
@@ -37,8 +37,6 @@ function StartExam() {
     dispatch(api.util.resetApiState());
   }; 
 
-  console.log(course?.isAvailable,  result,  !resultIsLoading)
-
   return (
     <div className='w-screen h-screen flex flex-col items-center justify-center p-4 bg-gray-100'>
       {course?.isAvailable && !result && !resultIsLoading
@@ -52,11 +50,15 @@ function StartExam() {
             </div>
             <div className='flex gap-5'>
               <button onClick={logout} className='mt-5 border border-solid border-red-400 rounded-md text-red-400 py-2 px-5'>Logout</button>
-              <button className='bg-blue-500 py-3 px-5 rounded-lg mt-5 cursor-pointer text-white' onClick={startCourse}>START EXAMS</button>
+              <button 
+                disabled={startExamResult.isLoading} 
+                className='bg-blue-500 py-3 px-5 disabled:bg-slate-500 rounded-lg mt-5 cursor-pointer text-white' 
+                onClick={startCourse}>{startExamResult.isLoading ? 'STARTING...' : 'START EXAMS'}
+              </button>
             </div>
 
           </>
-        :  isLoading  || resultIsLoading
+        :  isLoading  || resultIsLoading || resultIsFetching
           ? <></>
           : <>
             <img src='info.png' className='w-96 h-96' alt='info'/>

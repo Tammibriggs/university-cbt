@@ -7,10 +7,15 @@ function ExamCard() {
 
   const { currentIndex } = useSelector((state) => state.exam); 
   const user = useSelector((state) => state.auth.user) 
-  const {data: questions} = useGetQuestionsQuery(user.startCourse.course)
+  const {data: questions} = useGetQuestionsQuery(user?.startCourse?.course, {skip: !user?.startCourse?.course})
   const dispatch = useDispatch()
 
+  const isLastQuestion = () => {
+    return currentIndex === questions.questions.length - 1
+  }
+
   if(!questions) return null
+  
   return (
     <div className="question border p-4 mr-16 bg-white rounded-lg shadow-xl mt-[20px]">
       <section className="question flex mb-6">
@@ -38,15 +43,15 @@ function ExamCard() {
            Prev
         </button>
         <button
-          disabled={currentIndex === questions.questions.length - 1}
+          disabled={isLastQuestion()}
           className={`px-8 py-2 border shadow rounded-md mx-2 flex items-center font-bold justify-center ${
-            currentIndex === questions.questions.length - 1
+            isLastQuestion()
               ? 'cursor-not-allowed text-gray-500'
               : 'text-blue-500'
           }`}
           onClick={() => dispatch(nextQuestion())}
         >
-          Next 
+          Next
         </button>
       </section>
     </div>

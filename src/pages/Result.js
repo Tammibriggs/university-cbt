@@ -1,21 +1,26 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useGetResultQuery } from "../redux/services/user"
+import { useDeleteResultMutation, useGetResultQuery } from "../redux/services/user"
 import { useGetCourseByCodeQuery } from "../redux/services/course"
-import { setCredentials } from "../redux/authSlice"
+import { setCredentials, setUser } from "../redux/authSlice"
 import { clearExamState } from "../redux/examSlice"
 import { useEffect } from "react"
 import { api } from "../redux/services/api"
+import { useNavigate } from "react-router-dom"
 
 function Result() {
-
-  const {user} = useSelector((state) => state.auth) 
-  const {data: course} = useGetCourseByCodeQuery(user.startCourse.course, {skip: !user?.startCourse.course})
-  const {data: result, refetch} = useGetResultQuery(user?.startCourse?.course, {skip: !user?.startCourse?.course})
+  const navigate = useNavigate()
   const dispatch = useDispatch()
+  const {user} = useSelector((state) => state.auth) 
+
+  const {data: course} = useGetCourseByCodeQuery(user?.startCourse?.course, {skip: !user?.startCourse?.course})
+  const {data: result, refetch, isUninitialized} = useGetResultQuery(user?.startCourse?.course, {skip: !user?.startCourse?.course})
+  const [deleteResult, deleteState] = useDeleteResultMutation()
 
   useEffect(() => {
-    refetch()
-  }, [refetch])
+    if(!isUninitialized) {
+      refetch()
+    }
+  }, [])
 
   const logout = () => {
     sessionStorage.clear()
@@ -23,6 +28,19 @@ function Result() {
     dispatch(clearExamState())
     dispatch(api.util.resetApiState());
   };
+
+  const handleRetry = async () => {
+     const res = await deleteResult(user?.startCourse?.course)
+    if(res.data) {
+      dispatch(setUser({user: res.data}))
+      dispatch(clearExamState())
+      sessionStorage.setItem(
+        "currentUser",
+        JSON.stringify({ ...res.data })
+      );
+      navigate('/start-exam')
+    }
+  }
 
   return (
     <div className='w-[90%] m-auto min-h-screen flex items-center justify-center flex-col'>
@@ -44,7 +62,18 @@ function Result() {
           </tr>
         </tbody>
       </table>
-     <button className='mt-10 bg-red-300 py-3 px-5 rounded-md cursor-pointer text-white' onClick={logout}>Log out</button>
+     <button className='mt-10 bg-red-400 hover:bg-red-500 py-3 px-5 rounded-md cursor-pointer text-white' onClick={logout}>Log out</button>
+     <span className="mt-5 py-3 px-5 text-slate-600">
+        Test Mode Privilage: {" "}
+        <span
+          onClick={handleRetry}
+          className={`font-medium text-slate-800 cursor-pointer ${
+            deleteState.isLoading ? "cursor-wait" : ""
+          }`}
+        >
+          {deleteState.isLoading ? "Processing..." : "Retry"}
+        </span>
+      </span>
     </div>
   )
 }

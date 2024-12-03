@@ -19,7 +19,7 @@ function Admin() {
     <div className="min-h-screen flex flex-col bg-gray-100 mx-auto">
       <nav className="shadow-sm flex justify-end px-8 py-4">
         <button
-          className="rounded text-red-300 px-4 py-2"
+          className="rounded text-slate-800 px-4 py-2"
           onClick={handleLogout}
         >
           Logout
@@ -51,7 +51,7 @@ function Admin() {
           Results
         </h1>
       </div>
-      <div className=" w-[90%] max-w-[1100px] flex flex-grow m-auto">
+      <div className="w-[90%] max-w-[1100px] flex flex-grow m-auto">
         {currentSection === 'courses' && <CoursesAdmin />}
         {currentSection === 'students' && <StudentsAdmin />}
         {currentSection === 'results' && <ResultsAdmin />}
